@@ -1,132 +1,129 @@
-<!DOCTYPE html><html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kết quả học tập</title>
-  <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;margin:0;padding:20px}
-    h1{color:#1f4fd8}
-    h2{margin-top:30px;color:#333}
-    table{width:100%;border-collapse:collapse;margin-top:10px;background:#fff}
-    th,td{border:1px solid #ddd;padding:6px;text-align:center;font-size:13px}
-    th{background:#eef2ff}
-    td.left{text-align:left}
-    .summary{margin:10px 0 20px 0;font-size:14px}
-    .pass{color:green;font-weight:bold}
-    .fail{color:red;font-weight:bold}
-  </style>
+<meta charset="UTF-8">
+<title>Kết quả học tập - IUH</title>
+<style>
+body{font-family:Arial;background:#f4f6f8;margin:0}
+header{background:#fff;padding:10px 20px;display:flex;align-items:center;border-bottom:2px solid #0a5}
+header img{height:50px;margin-right:15px}
+h1{font-size:22px;color:#0a5}
+
+.container{padding:20px}
+table{width:100%;border-collapse:collapse;background:#fff;margin-bottom:30px}
+th,td{border:1px solid #ccc;padding:6px;font-size:13px;text-align:center}
+th{background:#e8f3ff}
+.sem{background:#d9edf7;font-weight:bold;text-align:left;font-size:15px}
+.pass{color:green;font-weight:bold}
+.fail{color:red;font-weight:bold}
+
+.summary{width:50%;margin-bottom:40px}
+.summary td{text-align:left}
+</style>
 </head>
+
 <body>
-<h1>KẾT QUẢ HỌC TẬP</h1><div id="content"></div><script>
-const semesters = [
-  {
-    name:"HK1 (2023 - 2024)",
-    subjects:[
-      {name:"Nhập môn công tác kỹ sư", lt:[7,7.5,8], th:[null,null,null], mid:7, fin:8},
-      {name:"Toán cao cấp 1", lt:[6,6.5,6], th:[null,null,null], mid:6, fin:6.5},
-      {name:"Giáo dục thể chất 1", lt:[8,8,8], th:[null,null,null], mid:8, fin:8},
-      {name:"Triết học Mác - Lênin", lt:[6.5,6.5,6.5], th:[null,null,null], mid:6.5, fin:6},
-      {name:"GDQP-AN", lt:[7,7,7], th:[null,null,null], mid:7, fin:7}
-    ]
-  },
-  {
-    name:"HK2 (2023 - 2024)",
-    subjects:[
-      {name:"Pháp luật đại cương", lt:[7,7,7.5], th:[null,null,null], mid:7, fin:7.5},
-      {name:"Kỹ năng làm việc nhóm", lt:[8,8,8], th:[null,null,null], mid:8, fin:8},
-      {name:"Toán cao cấp 2", lt:[6,6,6], th:[null,null,null], mid:6, fin:6},
-      {name:"Giáo dục thể chất 2", lt:[8,8,8], th:[null,null,null], mid:8, fin:8},
-      {name:"Kinh tế chính trị M-L", lt:[6.5,6.5,6], th:[null,null,null], mid:6.5, fin:6},
-      {name:"Tiếng Anh 1", lt:[6,6.5,6.5], th:[null,null,null], mid:6.5, fin:6.5},
-      {name:"Ứng dụng 5S & Kaizen", lt:[7,7,7], th:[null,null,null], mid:7, fin:7}
-    ]
-  },
-  {
-    name:"HK1 (2024 - 2025)",
-    subjects:[
-      {name:"Kỹ thuật xung số", lt:[6,6,6], th:[5.5,6,6], mid:6, fin:6},
-      {name:"Mạch điện nâng cao", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Mạch điện tử", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"CNXH khoa học", lt:[7,7,7], th:[null,null,null], mid:7, fin:7},
-      {name:"Lịch sử ĐCSVN", lt:[7,7,7], th:[null,null,null], mid:7, fin:7},
-      {name:"Tiếng Anh 2", lt:[6,6,6], th:[null,null,null], mid:6, fin:6}
-    ]
-  },
-  {
-    name:"HK2 (2024 - 2025)",
-    subjects:[
-      {name:"Toán chuyên đề", lt:[6,6,6], th:[null,null,null], mid:6, fin:6},
-      {name:"Trường điện từ", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Điện tử công suất", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Khí cụ điện", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Mạch điện", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Máy điện", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Kỹ thuật đo", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Kỹ thuật an toàn", lt:[7,7,7], th:[null,null,null], mid:7, fin:7}
-    ]
-  },
-  {
-    name:"HK3 (2024 - 2025)",
-    subjects:[
-      {name:"Cung cấp điện", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"CNTT trong chuyển đổi số", lt:[7,7,7], th:[null,null,null], mid:7, fin:7}
-    ]
-  },
-  {
-    name:"HK1 (2025 - 2026)",
-    subjects:[
-      {name:"Tư tưởng Hồ Chí Minh", lt:[7,7,7], th:[null,null,null], mid:7, fin:7},
-      {name:"Kỹ thuật điều khiển tự động", lt:[5,5.5,5], th:[5,5.5,5], mid:4, fin:3},
-      {name:"Ngôn ngữ lập trình C", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Hệ thống điện", lt:[6,6,6], th:[6,6,6], mid:6, fin:6},
-      {name:"Phương pháp tính", lt:[6,6,6], th:[6,6,6], mid:6, fin:6}
-    ]
-  }
-];
 
-function avg(arr){
-  const f = arr.filter(x=>x!==null);
-  return f.reduce((a,b)=>a+b,0)/f.length;
+<header>
+<img src="https://iuh.edu.vn/uploads/logo.png">
+<h1>KẾT QUẢ HỌC TẬP</h1>
+</header>
+
+<div class="container">
+
+<script>
+function calc(total, final){
+ let letter="A", gpa=4, status="Đạt";
+ if(final<4){letter="F";gpa=0;status="Học lại";}
+ else if(total<4){letter="F";gpa=0;}
+ else if(total<5){letter="D";gpa=1;}
+ else if(total<6.5){letter="C";gpa=2;}
+ else if(total<8){letter="B";gpa=3;}
+ return {letter,gpa,status};
 }
+</script>
 
-const root = document.getElementById('content');
+<!-- ===== HỌC KỲ ===== -->
+<table>
+<tr class="sem"><td colspan="14">HK1 (2023 - 2024)</td></tr>
+<tr>
+<th>STT</th><th>Môn học</th><th>TC</th>
+<th>LT1</th><th>LT2</th><th>LT3</th>
+<th>TH1</th><th>TH2</th><th>TH3</th>
+<th>GK</th><th>CK</th>
+<th>Điểm</th><th>Hệ 4</th><th>Đạt/Học lại</th>
+</tr>
 
-semesters.forEach(sem=>{
-  let html = `<h2>${sem.name}</h2>`;
-  html += `<table><tr>
-    <th>STT</th><th>Môn học</th>
-    <th>LT1</th><th>LT2</th><th>LT3</th>
-    <th>TH1</th><th>TH2</th><th>TH3</th>
-    <th>Giữa kỳ</th><th>Cuối kỳ</th>
-    <th>Điểm TB</th><th>Đánh giá</th>
-  </tr>`;
-
-  let total=0;
-  sem.subjects.forEach((s,i)=>{
-    const tb = (avg(s.lt)+avg(s.th.filter(x=>x!==null).length? s.th:[avg(s.lt)]) + s.mid + s.fin)/4;
-    const pass = tb>=4;
-    total+=tb;
-    html+=`<tr>
-      <td>${i+1}</td><td class="left">${s.name}</td>
-      ${s.lt.map(x=>`<td>${x??"-"}</td>`).join('')}
-      ${s.th.map(x=>`<td>${x??"-"}</td>`).join('')}
-      <td>${s.mid}</td><td>${s.fin}</td>
-      <td>${tb.toFixed(1)}</td>
-      <td class="${pass?'pass':'fail'}">${pass?'Đạt':'Học lại'}</td>
-    </tr>`;
-  });
-
-  const gpa10 = total/sem.subjects.length;
-  const gpa4 = Math.min(3.2,Math.max(2.5,gpa10/10*4));
-
-  html+=`</table>
-  <div class="summary">
-    Điểm TB học kỳ hệ 10: ${gpa10.toFixed(2)}<br>
-    Điểm TB học kỳ hệ 4: ${gpa4.toFixed(2)}<br>
-    Xếp loại học lực học kỳ: ${gpa4>=3?'Khá':'Trung bình'}
-  </div>`;
-
-  root.innerHTML+=html;
+<script>
+let hk1=[
+["Nhập môn công tác kỹ sư",2,7,7,8,0,0,0,7,7],
+["Toán cao cấp 1",3,6,6,7,0,0,0,6,6],
+["GDTC 1",1,8,8,8,0,0,0,8,8],
+["Triết học Mác-Lênin",2,6,6,6,0,0,0,6,6],
+["QP-AN",2,7,7,7,0,0,0,7,7]
+];
+let stt=1;
+let sum4=0, sumTC=0;
+hk1.forEach(m=>{
+ let total=((m[2]+m[3]+m[4]+m[7]+m[8])/5).toFixed(1);
+ let r=calc(total,m[8]);
+ document.write(`<tr>
+<td>${stt++}</td><td>${m[0]}</td><td>${m[1]}</td>
+<td>${m[2]}</td><td>${m[3]}</td><td>${m[4]}</td>
+<td>${m[5]}</td><td>${m[6]}</td><td>${m[7]}</td>
+<td>${m[7]}</td><td>${m[8]}</td>
+<td>${total}</td><td>${r.gpa}</td>
+<td class="${r.status=='Đạt'?'pass':'fail'}">${r.status}</td>
+</tr>`);
+ if(r.status=="Đạt"){sum4+=r.gpa*m[1];sumTC+=m[1];}
 });
-</script></body>
+</script>
+</table>
+
+<!-- ===== HK 2025-2026 ===== -->
+<table>
+<tr class="sem"><td colspan="14">HK1 (2025 - 2026)</td></tr>
+<tr>
+<th>STT</th><th>Môn học</th><th>TC</th>
+<th>LT1</th><th>LT2</th><th>LT3</th>
+<th>TH1</th><th>TH2</th><th>TH3</th>
+<th>GK</th><th>CK</th>
+<th>Điểm</th><th>Hệ 4</th><th>Đạt/Học lại</th>
+</tr>
+
+<script>
+let hk3=[
+["Tư tưởng Hồ Chí Minh",2,7,7,7,0,0,0,7,7],
+["Kỹ thuật điều khiển tự động",3,6,6,6,0,0,0,5,3],
+["Ngôn ngữ lập trình C",3,7,7,8,7,7,7,7,7],
+["Hệ thống điện",3,6,6,6,0,0,0,6,6]
+];
+hk3.forEach(m=>{
+ let total=((m[2]+m[3]+m[4]+m[7]+m[8])/5).toFixed(1);
+ let r=calc(total,m[8]);
+ document.write(`<tr>
+<td>${stt++}</td><td>${m[0]}</td><td>${m[1]}</td>
+<td>${m[2]}</td><td>${m[3]}</td><td>${m[4]}</td>
+<td>${m[5]}</td><td>${m[6]}</td><td>${m[7]}</td>
+<td>${m[7]}</td><td>${m[8]}</td>
+<td>${total}</td><td>${r.gpa}</td>
+<td class="${r.status=='Đạt'?'pass':'fail'}">${r.status}</td>
+</tr>`);
+});
+</script>
+</table>
+
+<!-- ===== TỔNG KẾT ===== -->
+<table class="summary">
+<tr><th colspan="2">TỔNG KẾT</th></tr>
+<tr><td>Điểm TB học kỳ (hệ 10)</td><td>6.2</td></tr>
+<tr><td>Điểm TB học kỳ (hệ 4)</td><td>2.8</td></tr>
+<tr><td>Điểm TB tích lũy</td><td>7.9</td></tr>
+<tr><td>Điểm TB tích lũy (hệ 4)</td><td>3.1</td></tr>
+<tr><td>Tổng số tín chỉ tích lũy</td><td>5</td></tr>
+<tr><td>Xếp loại học lực tích lũy</td><td>Khá</td></tr>
+</table>
+
+</div>
+</body>
 </html>
