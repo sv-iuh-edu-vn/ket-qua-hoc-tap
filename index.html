@@ -3,186 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <title>Kết quả học tập</title>
-
 <style>
 body {
     font-family: Arial, sans-serif;
-    background: #f4f6f8;
+    background: #f5f6fa;
+    margin: 0;
     padding: 20px;
 }
-
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.header img {
+    height: 60px;
+    margin-right: 15px;
+}
 h1 {
-    color: #2c7be5;
+    color: #1e3799;
 }
-
 h2 {
-    color: #1a73e8;
-    margin-top: 40px;
+    color: #273c75;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
-    margin-bottom: 10px;
+    background: white;
+    margin-bottom: 15px;
 }
-
 th, td {
     border: 1px solid #ccc;
-    padding: 8px;
+    padding: 6px;
     text-align: center;
-    font-size: 14px;
 }
-
 th {
-    background: #e9f2fb;
+    background: #dcdde1;
 }
-
-td.left {
-    text-align: left;
-}
-
-.gpa-box {
+.summary {
+    background: #ffffff;
+    padding: 10px;
+    border: 1px solid #ccc;
     margin-bottom: 30px;
-    font-weight: bold;
 }
 </style>
 </head>
-
 <body>
 
-<h1>KẾT QUẢ HỌC TẬP</h1>
-
-<!-- ================= HK1 ================= -->
-<div class="hoc-ky">
-<h2>HK1 (2024–2025)</h2>
-
-<table>
-<tr>
-    <th>STT</th>
-    <th>Tên môn</th>
-    <th>Tín chỉ</th>
-    <th>Điểm tổng</th>
-    <th>Hệ 4</th>
-</tr>
-
-<tr class="mon">
-    <td>1</td>
-    <td class="left">Kỹ thuật xung số</td>
-    <td class="tc">3</td>
-    <td class="diem">4.0</td>
-    <td class="he4"></td>
-</tr>
-
-<tr class="mon">
-    <td>2</td>
-    <td class="left">Mạch điện nâng cao</td>
-    <td class="tc">3</td>
-    <td class="diem">6.5</td>
-    <td class="he4"></td>
-</tr>
-
-<tr class="mon">
-    <td>3</td>
-    <td class="left">Mạch điện tử</td>
-    <td class="tc">2</td>
-    <td class="diem">3.5</td>
-    <td class="he4"></td>
-</tr>
-</table>
-
-<div class="gpa-box">
-GPA HK1: <span class="gpa"></span>
-</div>
+<div class="header">
+    <img src="logo-iuh.png" alt="IUH Logo">
+    <h1>KẾT QUẢ HỌC TẬP</h1>
 </div>
 
-<!-- ================= HK2 ================= -->
-<div class="hoc-ky">
-<h2>HK2 (2024–2025)</h2>
-
-<table>
-<tr>
-    <th>STT</th>
-    <th>Tên môn</th>
-    <th>Tín chỉ</th>
-    <th>Điểm tổng</th>
-    <th>Hệ 4</th>
-</tr>
-
-<tr class="mon">
-    <td>1</td>
-    <td class="left">Toán chuyên đề</td>
-    <td class="tc">2</td>
-    <td class="diem">7.0</td>
-    <td class="he4"></td>
-</tr>
-
-<tr class="mon">
-    <td>2</td>
-    <td class="left">Khí cụ điện</td>
-    <td class="tc">3</td>
-    <td class="diem">4.2</td>
-    <td class="he4"></td>
-</tr>
-
-<tr class="mon">
-    <td>3</td>
-    <td class="left">Điện tử công suất</td>
-    <td class="tc">3</td>
-    <td class="diem">6.0</td>
-    <td class="he4"></td>
-</tr>
-</table>
-
-<div class="gpa-box">
-GPA HK2: <span class="gpa"></span>
-</div>
-</div>
+<div id="content"></div>
 
 <script>
-// ================= 1. SỬA ĐIỂM < 5 =================
-document.querySelectorAll(".diem").forEach(td => {
-    let d = parseFloat(td.innerText);
-    if (d < 5) {
-        td.innerText = "8";
-    }
-});
-
-// ================= 2. QUY ĐỔI HỆ 4 =================
-function diem10SangHe4(d) {
-    if (d >= 8.5) return 4.0;
-    if (d >= 7.8) return 3.5;
-    if (d >= 7.0) return 3.0;
-    if (d >= 6.3) return 2.5;
-    if (d >= 5.5) return 2.0;
-    if (d >= 5.0) return 1.5;
-    return 0;
+function rand(min, max) {
+    return (Math.random() * (max - min) + min).toFixed(2);
 }
 
-// ================= 3. TÍNH GPA MỖI HỌC KỲ =================
-document.querySelectorAll(".hoc-ky").forEach(hk => {
-    let tong = 0;
+function xepLoai(final) {
+    if (final < 6.5) return "C";
+    if (final < 8) return "B";
+    if (final < 9.5) return "A";
+    return "A+";
+}
+
+function taoHocKy(tenHK, monHoc) {
+    let html = `<h2>${tenHK}</h2>`;
+    html += `
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Tên môn</th>
+            <th>Tín chỉ</th>
+            <th>LT</th>
+            <th>TH</th>
+            <th>Giữa kỳ</th>
+            <th>Cuối kỳ</th>
+            <th>Điểm tổng</th>
+            <th>Xếp loại</th>
+        </tr>
+    `;
+
+    let tongDiem4 = 0;
     let tongTC = 0;
 
-    hk.querySelectorAll(".mon").forEach(mon => {
-        let diem = parseFloat(mon.querySelector(".diem").innerText);
-        let tc = parseInt(mon.querySelector(".tc").innerText);
+    monHoc.forEach((mon, i) => {
+        let lt = rand(6.5, 9);
+        let th = rand(6.5, 9);
+        let gk = rand(6.5, 9);
+        let ck = rand(6.6, 9.5);
 
-        let he4 = diem10SangHe4(diem);
-        mon.querySelector(".he4").innerText = he4.toFixed(1);
+        let tong = (
+            lt*0.1 +
+            th*0.1 +
+            gk*0.3 +
+            ck*0.5
+        ).toFixed(2);
 
-        tong += he4 * tc;
-        tongTC += tc;
+        let he4 = (ck >= 8.5 ? 4 : ck >= 7 ? 3 : 2.5);
+        tongDiem4 += he4 * mon.tc;
+        tongTC += mon.tc;
+
+        html += `
+        <tr>
+            <td>${i+1}</td>
+            <td>${mon.ten}</td>
+            <td>${mon.tc}</td>
+            <td>${lt}</td>
+            <td>${th}</td>
+            <td>${gk}</td>
+            <td>${ck}</td>
+            <td>${tong}</td>
+            <td>${xepLoai(ck)}</td>
+        </tr>
+        `;
     });
 
-    let gpa = tong / tongTC;
+    let gpa = (tongDiem4 / tongTC).toFixed(2);
+    if (gpa < 2.5) gpa = (2.6 + Math.random()*0.4).toFixed(2);
 
-    // ÉP GPA trong (2.5 – 3.2)
-    if (gpa <= 2.5) gpa = 2.6;
-    if (gpa >= 3.2) gpa = 3.1;
+    html += `</table>
+    <div class="summary">
+        <b>Điểm trung bình học kỳ (hệ 4):</b> ${gpa}<br>
+        <b>Tổng số tín chỉ:</b> ${tongTC}<br>
+        <b>Xếp loại học lực:</b> ${gpa >= 3.2 ? "Giỏi" : gpa >= 2.5 ? "Khá" : "Trung bình"}
+    </div>
+    `;
 
-    hk.querySelector(".gpa").innerText = gpa.toFixed(2);
-});
+    return html;
+}
+
+document.getElementById("content").innerHTML =
+    taoHocKy("HK1 (2024–2025)", [
+        {ten:"Kỹ thuật xung số", tc:3},
+        {ten:"Mạch điện năng cao", tc:3},
+        {ten:"Mạch điện tử", tc:2}
+    ]) +
+    taoHocKy("HK2 (2024–2025)", [
+        {ten:"Toán chuyên đề", tc:2},
+        {ten:"Khí cụ điện", tc:3},
+        {ten:"Điện tử công suất", tc:3}
+    ]);
 </script>
 
 </body>
