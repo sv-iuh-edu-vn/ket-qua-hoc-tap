@@ -1,59 +1,194 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Kết quả học tập - IUH</title>
+<meta charset="UTF-8" />
+<title>Kết quả học tập</title>
 <style>
-body{font-family:Arial;background:#f2f5f8;margin:0}
-header{background:#fff;padding:10px 20px;border-bottom:1px solid #ddd}
-.container{padding:20px}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}
-th,td{border:1px solid #ddd;padding:5px;text-align:center}
-th{background:#eef4fb;color:#2a6ebd}
-.hk{background:#e9f2ff;font-weight:bold}
-.left{text-align:left}
-.pass{color:green;font-weight:bold}
-.fail{color:red;font-weight:bold}
-.summary{background:#fafafa;font-weight:bold}
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background:#f5f7fa;
+        margin:0;
+        padding:20px;
+        color:#333;
+    }
+    h2{
+        font-size:18px;
+        font-weight:600;
+        margin-bottom:10px;
+    }
+    table{
+        width:100%;
+        border-collapse:collapse;
+        background:#fff;
+        margin-bottom:15px;
+        font-size:13px;
+    }
+    th, td{
+        border:1px solid #dcdcdc;
+        padding:6px;
+        text-align:center;
+    }
+    th{
+        background:#eef3f8;
+        font-weight:600;
+    }
+    .left{
+        text-align:left;
+    }
+    .semester{
+        background:#f0f4f8;
+        font-weight:600;
+        text-align:left;
+        color:#2a6ebb;
+    }
+    .pass{color:green;font-weight:600;}
+    .fail{color:red;font-weight:600;}
+    .summary{
+        background:#fafafa;
+        font-weight:600;
+    }
 </style>
 </head>
 
 <body>
-<header><b>Industrial University of Ho Chi Minh City</b></header>
-<div class="container">
+
 <h2>KẾT QUẢ HỌC TẬP</h2>
 
-<table>
-<tr><th>STT</th><th>Mã HP</th><th class="left">Tên môn</th><th>TC</th>
-<th>LT1</th><th>LT2</th><th>LT3</th>
-<th>TH1</th><th>TH2</th><th>TH3</th>
-<th>GK</th><th>CK</th><th>Điểm</th><th>Hệ 4</th><th>Chữ</th><th>Đạt</th></tr>
-
-<tr class="hk"><td colspan="16">HK1 (2023 - 2024)</td></tr>
-<tr><td>1</td><td>4203000060501</td><td class="left">Nhập môn công tác kỹ sư</td><td>2</td><td>7</td><td>7.5</td><td>8</td><td></td><td></td><td></td><td>7</td><td>7.5</td><td>7.4</td><td>3.0</td><td>B</td><td class="pass">Đạt</td></tr>
-<tr><td>2</td><td>4203000325922</td><td class="left">Toán cao cấp 1</td><td>3</td><td>7</td><td>7</td><td>7.5</td><td></td><td></td><td></td><td>7</td><td>7</td><td>7.1</td><td>3.0</td><td>B</td><td class="pass">Đạt</td></tr>
-<tr><td>3</td><td>4203000330709</td><td class="left">Giáo dục thể chất 1</td><td>1</td><td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>8.0</td><td>4.0</td><td>A+</td><td class="pass">Đạt</td></tr>
-<tr><td>4</td><td>420301416418</td><td class="left">Triết học Mác – Lênin</td><td>3</td><td>6.5</td><td>9</td><td>9.5</td><td></td><td></td><td></td><td>6</td><td>6</td><td>6.9</td><td>2.5</td><td>C+</td><td class="pass">Đạt</td></tr>
-<tr><td>5</td><td>420301660013</td><td class="left">GDQP & AN</td><td>8</td><td>9</td><td>7</td><td>9</td><td></td><td></td><td></td><td>8.5</td><td>8.5</td><td>8.5</td><td>3.8</td><td>A</td><td class="pass">Đạt</td></tr>
-
-<tr class="hk"><td colspan="16">HK2 (2023 - 2024)</td></tr>
-<tr><td>6</td><td>420300242207</td><td class="left">Pháp luật đại cương</td><td>2</td><td>9</td><td>8</td><td>9</td><td></td><td></td><td></td><td>5.5</td><td>7.2</td><td>7.2</td><td>3.0</td><td>B</td><td class="pass">Đạt</td></tr>
-<tr><td>7</td><td>420300319243</td><td class="left">Kỹ năng làm việc nhóm</td><td>2</td><td>8.5</td><td>8</td><td>9.5</td><td></td><td></td><td></td><td>8</td><td>8.5</td><td>8.5</td><td>3.8</td><td>A</td><td class="pass">Đạt</td></tr>
-<tr><td>8</td><td>420300328897</td><td class="left">Toán cao cấp 2</td><td>2</td><td>7</td><td>7</td><td>7.5</td><td></td><td></td><td></td><td>6.5</td><td>6.8</td><td>6.8</td><td>2.5</td><td>C+</td><td class="pass">Đạt</td></tr>
-<tr><td>9</td><td>420300330664</td><td class="left">Giáo dục thể chất 2</td><td>1</td><td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>9.0</td><td>4.0</td><td>A+</td><td class="pass">Đạt</td></tr>
-<tr><td>10</td><td>420301416552</td><td class="left">Kinh tế chính trị Mác – Lênin</td><td>2</td><td>6.5</td><td>9</td><td>9.5</td><td></td><td></td><td></td><td>5</td><td>6.3</td><td>6.3</td><td>2.5</td><td>C+</td><td class="pass">Đạt</td></tr>
-<tr><td>11</td><td>420301525372</td><td class="left">Tiếng Anh 1</td><td>3</td><td>7.5</td><td>8.5</td><td>7</td><td></td><td></td><td></td><td>7.5</td><td>7.1</td><td>7.1</td><td>3.0</td><td>B</td><td class="pass">Đạt</td></tr>
-<tr><td>12</td><td>420301530018</td><td class="left">Ứng dụng 5S & Kaizen</td><td>3</td><td>9</td><td>9</td><td>9</td><td></td><td></td><td></td><td>5.5</td><td>7.9</td><td>7.9</td><td>3.0</td><td>B</td><td class="pass">Đạt</td></tr>
-
-<tr class="hk"><td colspan="16">HK1 (2025 - 2026)</td></tr>
-<tr><td>30</td><td>420300068706</td><td class="left">Kỹ thuật điều khiển tự động</td><td>3</td><td>3</td><td>3.5</td><td>4</td><td></td><td></td><td></td><td>3</td><td>3</td><td>3.5</td><td>0.0</td><td>F</td><td class="fail">Học lại</td></tr>
-<tr><td>31</td><td>420300075609</td><td class="left">Ngôn ngữ lập trình C</td><td>3</td><td>7.5</td><td>8</td><td>7</td><td></td><td></td><td></td><td>7</td><td>8</td><td>7.6</td><td>3.0</td><td>B</td><td class="pass">Đạt</td></tr>
-
-<tr class="summary"><td colspan="16">
-ĐIỂM TB TÍCH LŨY: Hệ 10: <b>6.9</b> | Hệ 4: <b>2.85</b> | Xếp loại: <b>Khá</b>
-</td></tr>
-
+<table id="bangDiem">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã HP</th>
+            <th class="left">Tên môn</th>
+            <th>TC</th>
+            <th>GK</th>
+            <th>CK</th>
+            <th>Điểm</th>
+            <th>Hệ 4</th>
+            <th>Chữ</th>
+            <th>Đạt</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
 </table>
-</div>
+
+<script>
+const semesters = [
+{
+    name:"HK1 (2023 - 2024)",
+    courses:[
+        ["420300060501","Nhập môn công tác kỹ sư",2],
+        ["420300325922","Toán cao cấp 1",3],
+        ["420300330709","Giáo dục thể chất 1",1],
+        ["420301416418","Triết học Mác - Lênin",3],
+        ["420301660013","Giáo dục Quốc phòng và An Ninh",8],
+    ]
+},
+{
+    name:"HK2 (2023 - 2024)",
+    courses:[
+        ["420300242207","Pháp luật đại cương",2],
+        ["420300319243","Kỹ năng làm việc nhóm",2],
+        ["420300328897","Toán cao cấp 2",2],
+        ["420300330664","Giáo dục thể chất 2",1],
+        ["420301416552","Kinh tế chính trị Mác - Lênin",2],
+        ["420301525372","Tiếng Anh 1",3],
+        ["420301530018","Ứng dụng 5S và Kaizen trong sản xuất",3],
+    ]
+},
+{
+    name:"HK1 (2024 - 2025)",
+    courses:[
+        ["420300083110","Kỹ thuật xung số",3],
+        ["420300113905","Mạch điện nâng cao",3],
+        ["420300279110","Mạch điện tử",3],
+        ["420301416724","Chủ nghĩa xã hội khoa học",2],
+        ["420301416949","Lịch sử Đảng Cộng sản Việt Nam",2],
+        ["420301525425","Tiếng Anh 2",3],
+    ]
+},
+{
+    name:"HK2 (2024 - 2025)",
+    courses:[
+        ["420300059304","Toán chuyên đề",3],
+        ["420300060706","Trường điện từ",3],
+        ["420300068404","Điện tử công suất",3],
+        ["420300071407","Khí cụ điện",3],
+        ["420300096311","Mạch điện",3],
+        ["420300103707","Máy điện",3],
+        ["420300301303","Kỹ thuật đo",3],
+        ["420300351515","Kỹ thuật an toàn",2],
+    ]
+},
+{
+    name:"HK3 (2024 - 2025)",
+    courses:[
+        ["420300055902","Cung cấp điện",3],
+        ["420301529601","Công nghệ thông tin trong chuyển đổi số",2],
+    ]
+},
+{
+    name:"HK1 (2025 - 2026)",
+    courses:[
+        ["420300066424","Tư tưởng Hồ Chí Minh",2],
+        ["420300068706","Kỹ thuật điều khiển tự động",3],
+        ["420300075609","Ngôn ngữ lập trình C",3],
+        ["420300103803","Hệ thống điện",3],
+        ["420300332048","Phương pháp tính",3],
+    ]
+}
+];
+
+function calcGrade(score){
+    if(score < 4) return ["F",0,"Học lại"];
+    if(score < 5) return ["D",1,"Đạt"];
+    if(score < 6.5) return ["C",2,"Đạt"];
+    if(score < 8) return ["B",3,"Đạt"];
+    return ["A",4,"Đạt"];
+}
+
+let tbody = document.querySelector("#bangDiem tbody");
+let stt = 1;
+
+semesters.forEach(sem=>{
+    tbody.innerHTML += `<tr class="semester"><td colspan="10">${sem.name}</td></tr>`;
+
+    let sum10=0,sum4=0,tcSum=0;
+
+    sem.courses.forEach(c=>{
+        let gk = (Math.random()*3+5).toFixed(1);
+        let ck = (Math.random()*3+5).toFixed(1);
+        let diem = ((+gk + +ck)/2).toFixed(1);
+        let [chu,he4,dat] = calcGrade(diem);
+
+        sum10 += diem*c[2];
+        sum4  += he4*c[2];
+        tcSum += c[2];
+
+        tbody.innerHTML += `
+        <tr>
+            <td>${stt++}</td>
+            <td>${c[0]}</td>
+            <td class="left">${c[1]}</td>
+            <td>${c[2]}</td>
+            <td>${gk}</td>
+            <td>${ck}</td>
+            <td>${diem}</td>
+            <td>${he4}</td>
+            <td>${chu}</td>
+            <td class="${dat==='Đạt'?'pass':'fail'}">${dat}</td>
+        </tr>`;
+    });
+
+    tbody.innerHTML += `
+    <tr class="summary">
+        <td colspan="10">
+            Điểm TB HK (hệ 10): ${(sum10/tcSum).toFixed(2)} |
+            Điểm TB HK (hệ 4): ${(sum4/tcSum).toFixed(2)}
+        </td>
+    </tr>`;
+});
+</script>
+
 </body>
 </html>
