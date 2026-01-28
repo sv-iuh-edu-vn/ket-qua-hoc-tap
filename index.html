@@ -1,123 +1,194 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Bảng điểm sinh viên</title>
+<meta charset="UTF-8" />
+<title>Kết quả học tập</title>
 <style>
-body{font-family:Arial;background:#f5f6fa;padding:20px}
-h2{background:#0984e3;color:#fff;padding:8px}
-table{width:100%;border-collapse:collapse;background:#fff;margin-bottom:10px}
-th,td{border:1px solid #ccc;padding:6px;text-align:center}
-th{background:#dfe6e9}
-.summary{background:#ecf0f1;padding:10px;margin-bottom:30px}
-.pass{color:green;font-weight:bold}
-.fail{color:red;font-weight:bold}
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background:#f5f7fa;
+        margin:0;
+        padding:20px;
+        color:#333;
+    }
+    h2{
+        font-size:18px;
+        font-weight:600;
+        margin-bottom:10px;
+    }
+    table{
+        width:100%;
+        border-collapse:collapse;
+        background:#fff;
+        margin-bottom:15px;
+        font-size:13px;
+    }
+    th, td{
+        border:1px solid #dcdcdc;
+        padding:6px;
+        text-align:center;
+    }
+    th{
+        background:#eef3f8;
+        font-weight:600;
+    }
+    .left{
+        text-align:left;
+    }
+    .semester{
+        background:#f0f4f8;
+        font-weight:600;
+        text-align:left;
+        color:#2a6ebb;
+    }
+    .pass{color:green;font-weight:600;}
+    .fail{color:red;font-weight:600;}
+    .summary{
+        background:#fafafa;
+        font-weight:600;
+    }
 </style>
 </head>
+
 <body>
 
-<h1>📘 Kết quả học tập</h1>
-<div id="app"></div>
+<h2>KẾT QUẢ HỌC TẬP</h2>
+
+<table id="bangDiem">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã HP</th>
+            <th class="left">Tên môn</th>
+            <th>TC</th>
+            <th>GK</th>
+            <th>CK</th>
+            <th>Điểm</th>
+            <th>Hệ 4</th>
+            <th>Chữ</th>
+            <th>Đạt</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
 <script>
-const semesters=[
-{n:"HK1 (2023-2024)",c:[
-["Nhập môn công tác kỹ sư",2],
-["Toán cao cấp 1",3],
-["Giáo dục thể chất 1",1],
-["Triết học Mác - Lênin",3],
-["Giáo dục Quốc phòng và An ninh",3]]},
-
-{n:"HK2 (2023-2024)",c:[
-["Pháp luật đại cương",2],
-["Kỹ năng làm việc nhóm",2],
-["Toán cao cấp 2",3],
-["Giáo dục thể chất 2",1],
-["Kinh tế chính trị Mác - Lênin",3],
-["Tiếng Anh 1",3],
-["Ứng dụng 5S và Kaizen trong sản xuất",2]]},
-
-{n:"HK1 (2024-2025)",c:[
-["Kỹ thuật xung số",3],
-["Mạch điện nâng cao",3],
-["Mạch điện tử",3],
-["Chủ nghĩa xã hội khoa học",2],
-["Lịch sử Đảng Cộng sản Việt Nam",2],
-["Tiếng Anh 2",3]]},
-
-{n:"HK2 (2024-2025)",c:[
-["Toán chuyên đề",3],
-["Trường điện từ",3],
-["Điện tử công suất",3],
-["Khí cụ điện",3],
-["Mạch điện",3],
-["Máy điện",3],
-["Kỹ thuật đo",2],
-["Kỹ thuật an toàn",2]]},
-
-{n:"HK3 (2024-2025)",c:[
-["Cung cấp điện",3],
-["Công nghệ thông tin trong chuyển đổi số",2]]},
-
-{n:"HK1 (2025-2026)",c:[
-["Tư tưởng Hồ Chí Minh",2],
-["Kỹ thuật điều khiển tự động",3],
-["Ngôn ngữ lập trình C",3],
-["Hệ thống điện",3],
-["Phương pháp tính",3]]}
+const semesters = [
+{
+    name:"HK1 (2023 - 2024)",
+    courses:[
+        ["420300060501","Nhập môn công tác kỹ sư",2],
+        ["420300325922","Toán cao cấp 1",3],
+        ["420300330709","Giáo dục thể chất 1",1],
+        ["420301416418","Triết học Mác - Lênin",3],
+        ["420301660013","Giáo dục Quốc phòng và An Ninh",8],
+    ]
+},
+{
+    name:"HK2 (2023 - 2024)",
+    courses:[
+        ["420300242207","Pháp luật đại cương",2],
+        ["420300319243","Kỹ năng làm việc nhóm",2],
+        ["420300328897","Toán cao cấp 2",2],
+        ["420300330664","Giáo dục thể chất 2",1],
+        ["420301416552","Kinh tế chính trị Mác - Lênin",2],
+        ["420301525372","Tiếng Anh 1",3],
+        ["420301530018","Ứng dụng 5S và Kaizen trong sản xuất",3],
+    ]
+},
+{
+    name:"HK1 (2024 - 2025)",
+    courses:[
+        ["420300083110","Kỹ thuật xung số",3],
+        ["420300113905","Mạch điện nâng cao",3],
+        ["420300279110","Mạch điện tử",3],
+        ["420301416724","Chủ nghĩa xã hội khoa học",2],
+        ["420301416949","Lịch sử Đảng Cộng sản Việt Nam",2],
+        ["420301525425","Tiếng Anh 2",3],
+    ]
+},
+{
+    name:"HK2 (2024 - 2025)",
+    courses:[
+        ["420300059304","Toán chuyên đề",3],
+        ["420300060706","Trường điện từ",3],
+        ["420300068404","Điện tử công suất",3],
+        ["420300071407","Khí cụ điện",3],
+        ["420300096311","Mạch điện",3],
+        ["420300103707","Máy điện",3],
+        ["420300301303","Kỹ thuật đo",3],
+        ["420300351515","Kỹ thuật an toàn",2],
+    ]
+},
+{
+    name:"HK3 (2024 - 2025)",
+    courses:[
+        ["420300055902","Cung cấp điện",3],
+        ["420301529601","Công nghệ thông tin trong chuyển đổi số",2],
+    ]
+},
+{
+    name:"HK1 (2025 - 2026)",
+    courses:[
+        ["420300066424","Tư tưởng Hồ Chí Minh",2],
+        ["420300068706","Kỹ thuật điều khiển tự động",3],
+        ["420300075609","Ngôn ngữ lập trình C",3],
+        ["420300103803","Hệ thống điện",3],
+        ["420300332048","Phương pháp tính",3],
+    ]
+}
 ];
 
-const rand=(min,max)=>+(Math.random()*(max-min)+min).toFixed(1);
-const grade10=x=>x<4?"F":x<5.5?"D":x<6.5?"C":x<8?"B":"A";
-const grade4=x=>x<4?0:x<5.5?1:x<6.5?2:x<8?3:4;
-
-let app=document.getElementById("app");
-let totalCredits=0,sum10All=0,sum4All=0;
-
-semesters.forEach(s=>{
-let sum10=0,sum4=0,tc=0;
-let html=`<h2>${s.n}</h2><table>
-<tr>
-<th>Môn</th><th>TC</th>
-<th>LT1</th><th>LT2</th><th>LT3</th>
-<th>TH1</th><th>TH2</th><th>TH3</th>
-<th>Hệ 10</th><th>Hệ 4</th>
-<th>Chữ</th><th>KQ</th></tr>`;
-
-s.c.forEach(m=>{
-let lt=[rand(4,9),rand(4,9),rand(4,9)];
-let th=[rand(4,9),rand(4,9),rand(4,9)];
-let avg=[...lt,...th].reduce((a,b)=>a+b,0)/6;
-let g10=avg.toFixed(2), g4=grade4(avg), gC=grade10(avg);
-let pass=avg>=4;
-html+=`<tr>
-<td>${m[0]}</td><td>${m[1]}</td>
-${lt.map(x=>`<td>${x}</td>`).join("")}
-${th.map(x=>`<td>${x}</td>`).join("")}
-<td>${g10}</td><td>${g4}</td>
-<td>${gC}</td>
-<td class="${pass?"pass":"fail"}">${pass?"Đạt":"Học lại"}</td></tr>`;
-if(pass){
-sum10+=avg*m[1]; sum4+=g4*m[1]; tc+=m[1];
-sum10All+=avg*m[1]; sum4All+=g4*m[1]; totalCredits+=m[1];
+function calcGrade(score){
+    if(score < 4) return ["F",0,"Học lại"];
+    if(score < 5) return ["D",1,"Đạt"];
+    if(score < 6.5) return ["C",2,"Đạt"];
+    if(score < 8) return ["B",3,"Đạt"];
+    return ["A",4,"Đạt"];
 }
-});
-html+=`</table>
-<div class="summary">
-<b>TB học kỳ hệ 10:</b> ${(sum10/tc||0).toFixed(2)} |
-<b>Hệ 4:</b> ${(sum4/tc||0).toFixed(2)} |
-<b>Tín chỉ đạt:</b> ${tc}
-</div>`;
-app.innerHTML+=html;
-});
 
-app.innerHTML+=`
-<div class="summary">
-<h2>TỔNG KẾT TÍCH LŨY</h2>
-<b>TB tích lũy hệ 10:</b> ${(sum10All/totalCredits).toFixed(2)}<br>
-<b>TB tích lũy hệ 4:</b> ${(sum4All/totalCredits).toFixed(2)}<br>
-<b>Tổng tín chỉ tích lũy:</b> ${totalCredits}
-</div>`;
+let tbody = document.querySelector("#bangDiem tbody");
+let stt = 1;
+
+semesters.forEach(sem=>{
+    tbody.innerHTML += `<tr class="semester"><td colspan="10">${sem.name}</td></tr>`;
+
+    let sum10=0,sum4=0,tcSum=0;
+
+    sem.courses.forEach(c=>{
+        let gk = (Math.random()*3+5).toFixed(1);
+        let ck = (Math.random()*3+5).toFixed(1);
+        let diem = ((+gk + +ck)/2).toFixed(1);
+        let [chu,he4,dat] = calcGrade(diem);
+
+        sum10 += diem*c[2];
+        sum4  += he4*c[2];
+        tcSum += c[2];
+
+        tbody.innerHTML += `
+        <tr>
+            <td>${stt++}</td>
+            <td>${c[0]}</td>
+            <td class="left">${c[1]}</td>
+            <td>${c[2]}</td>
+            <td>${gk}</td>
+            <td>${ck}</td>
+            <td>${diem}</td>
+            <td>${he4}</td>
+            <td>${chu}</td>
+            <td class="${dat==='Đạt'?'pass':'fail'}">${dat}</td>
+        </tr>`;
+    });
+
+    tbody.innerHTML += `
+    <tr class="summary">
+        <td colspan="10">
+            Điểm TB HK (hệ 10): ${(sum10/tcSum).toFixed(2)} |
+            Điểm TB HK (hệ 4): ${(sum4/tcSum).toFixed(2)}
+        </td>
+    </tr>`;
+});
 </script>
+
 </body>
 </html>
